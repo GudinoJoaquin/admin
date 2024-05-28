@@ -4,11 +4,11 @@ import { Toaster, toast } from "sonner";
 
 export default function AdminCard({
   id,
-  img,
+  imagen: img,
   titulo,
   mensaje,
   fecha,
-  adjunto,
+  contenido_adjunto: adjunto,
 }) {
   const [showModal, setShowModal] = useState(false);
   const [currentPath, setCurrentPath] = useState(window.location.pathname);

@@ -83,12 +83,7 @@ export default function AdminAnuncios() {
             {currentAds.map((anuncio) => (
               <AdminCard
                 key={anuncio.id}
-                id={anuncio.id}
-                img={anuncio.imagen}
-                titulo={anuncio.titulo}
-                mensaje={anuncio.mensaje}
-                fecha={anuncio.fecha}
-                adjunto={anuncio.contenido_adjunto}
+                {...anuncio}
               />
             ))}
             <div className="flex justify-center items-center gap-2">
