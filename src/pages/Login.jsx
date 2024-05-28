@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { Context } from "../App";
-import { USUARIO } from "../assets/constants/constants";
+import { USUARIO } from "../assets/utils/constants";
 import { setCookie } from "../assets/utils/cookie";
 
 export default function Login() {

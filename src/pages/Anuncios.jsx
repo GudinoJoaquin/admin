@@ -3,30 +3,11 @@ import AdminCard from "../components/AdminCard";
 import ThemeSwitch from "../components/ThemeSwitch";
 import { Link } from "react-router-dom";
 import Loader from "react-js-loader";
+import useAnuncios from "../assets/hooks/useAnuncios";
 
 export default function AdminAnuncios() {
-  const [anuncios, setAnuncios] = useState([]);
-  const [loading, setLoading] = useState(true); // Estado para manejar el loading
-  const [currentPage, setCurrentPage] = useState(1);
-  const anunciosPerPage = 5;
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const url = "https://anuncios.vercel.app/anuncios";
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        setAnuncios(data);
-        console.log(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { anuncios, loading, currentPage, setCurrentPage, anunciosPerPage } =
+    useAnuncios();
 
   // Calcular el índice del último anuncio de la página actual
   const indexOfLastAd = currentPage * anunciosPerPage;
@@ -81,10 +62,7 @@ export default function AdminAnuncios() {
             </div>
 
             {currentAds.map((anuncio) => (
-              <AdminCard
-                key={anuncio.id}
-                {...anuncio}
-              />
+              <AdminCard key={anuncio.id} {...anuncio} />
             ))}
             <div className="flex justify-center items-center gap-2">
               {Array.from(
