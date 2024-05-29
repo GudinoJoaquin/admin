@@ -18,7 +18,7 @@ export default function AdminAnuncios() {
 
   return (
     <>
-      <div className="bg-white dark:bg-slate-900 ">
+      <div className="bg-white dark:bg-[#1D1D1D] ">
         <header className="flex justify-end items-center gap-[30px] md:translate-y-[2px] translate-y-[20px] ml-[10px] dark:text-slate-200">
           <Link
             className="text-emerald-600 scale-[1.2] font-bold text-[20px] transition duration-[.3s]"
@@ -51,7 +51,7 @@ export default function AdminAnuncios() {
                 { length: Math.ceil(anuncios.length / anunciosPerPage) },
                 (_, i) => (
                   <button
-                    className="dark:text-slate-200 dark:hover:bg-blue-900 font-semibold underline underline-offset-2 p-[4px] my-2 rounded-sm hover:scale-[1.2] hover:bg-red-100 transition duration-[.3s]"
+                    className="dark:text-slate-200 dark:hover:bg-[#2D2D2D] font-semibold underline underline-offset-2 p-[4px] my-2 rounded-sm hover:scale-[1.2] hover:bg-red-100 transition duration-[.3s]"
                     key={i + 1}
                     onClick={() => setCurrentPage(i + 1)}
                   >
@@ -69,7 +69,7 @@ export default function AdminAnuncios() {
                 { length: Math.ceil(anuncios.length / anunciosPerPage) },
                 (_, i) => (
                   <button
-                    className="dark:text-slate-200 dark:hover:bg-blue-900 font-semibold underline underline-offset-2 p-[4px] my-2 rounded-sm hover:scale-[1.2] hover:bg-red-100 transition duration-[.3s]"
+                    className="dark:text-slate-200 dark:hover:bg-[#2D2D2D] font-semibold underline underline-offset-2 p-[4px] my-2 rounded-sm hover:scale-[1.2] hover:bg-red-100 transition duration-[.3s]"
                     key={i + 1}
                     onClick={() => setCurrentPage(i + 1)}
                   >
