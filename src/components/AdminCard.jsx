@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Toaster, toast } from "sonner";
+import { RUTAS } from "../assets/utils/constants";
 
 export default function AdminCard({
   id,
@@ -13,6 +14,7 @@ export default function AdminCard({
   const [showModal, setShowModal] = useState(false);
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const { home, editar, eliminar } = RUTAS;
 
   useEffect(() => {
     const handleResize = () => {
@@ -32,7 +34,7 @@ export default function AdminCard({
 
   const confirmarEliminar = () => {
     console.log(`Eliminando anuncio con id: ${id}`);
-    fetch(`https://anuncios.vercel.app/eliminar-anuncio?id=${id}`, {
+    fetch(`${eliminar}${id}`, {
       method: "DELETE",
     })
       .then((response) => {
@@ -44,7 +46,7 @@ export default function AdminCard({
         setTimeout(() => {
           toast.loading("Volviendo al inicio");
           setTimeout(() => {
-            window.location.href = "/";
+            window.location.href = home;
           }, 1000);
         }, 500);
       })
@@ -97,12 +99,10 @@ export default function AdminCard({
                 </Link>
                 <Link
                   // onClick={handleModificarClick}
-                  to={`http://localhost:5173/editar?id=${id}&titulo=${encodeURIComponent(
-                    titulo
-                  )}`}
+                  to={`${editar}?id=${id}&titulo=${encodeURIComponent(titulo)}`}
                   data-ripple-light="true"
                   type="button"
-                  className="select-none mt-[10px] ml-[-20px] rounded-lg bg-orange-600 py-[10px] px-[10px] text-center text-nowrap align-middle font-sans text-[14px] font-bold uppercase text-white shadow-md shadow-orange-500/20 transition-all hover:shadow-lg hover:shadow-orange-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                  className="select-none mt-[10px] ml-[-20px] rounded-lg border-2 border-orange-600 hover:bg-orange-600 text-orange-600 hover:text-white py-[10px] px-[10px] text-center text-nowrap align-middle font-sans text-[14px] font-semibold uppercase shadow-md shadow-orange-500/20 transition-all hover:shadow-lg hover:shadow-orange-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 >
                   Modificar
                 </Link>
@@ -110,7 +110,7 @@ export default function AdminCard({
                   onClick={handleEliminarClick}
                   data-ripple-light="true"
                   type="button"
-                  className="select-none mt-[10px] ml-[-20px] rounded-lg bg-red-600 py-[10px] px-[10px] text-center text-nowrap align-middle font-sans text-[14px] font-bold uppercase text-white shadow-md shadow-red-700/20 transition-all hover:shadow-lg hover:shadow-red-700/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                  className="select-none mt-[10px] ml-[-20px] rounded-lg border-dashed border-2 border-red-600 text-red-500 hover:bg-red-600 hover:text-white py-[10px] px-[10px] text-center text-nowrap align-middle font-sans text-[14px] font-semibold uppercase shadow-md shadow-red-700/20 transition-all hover:shadow-lg hover:shadow-red-700/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 >
                   Descartar
                 </button>

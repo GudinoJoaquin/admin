@@ -2,16 +2,18 @@ import { useState, useEffect } from "react";
 import Input from "../components/Input";
 import ThemeSwitch from "../components/ThemeSwitch";
 import { Link } from "react-router-dom";
+import { RUTAS } from "../assets/utils/constants";
 
 export default function CrearAnuncio() {
   const [currentPath, setCurrentPath] = useState(window.location.search);
+  const { home, enviar } = RUTAS;
 
   return (
     <div className="bg-white dark:bg-slate-900 mt-[-2px] h-[100vh]">
       <header className="flex justify-end items-center gap-[50px] md:mt-[2px] mt-[20px] ml-[10px]">
         <Link
           className="hover:text-emerald-600 hover:scale-[1.2] font-semibold text-[20px] transition duration-[.3s] dark:text-white"
-          to="/"
+          to={home}
         >
           <p className="hover:text-emerald-600 transition duration-[.3s]">
             Inicio
@@ -31,10 +33,7 @@ export default function CrearAnuncio() {
           Crear anuncio
         </h2>
 
-        <form
-          method="post"
-          action="https://anuncios.vercel.app/admin/enviar-anuncio"
-        >
+        <form method="post" action={enviar}>
           <Input label="Titulo" type="text" name="titulo" />
 
           {/* <FileInput label='Subir imagen o pdf' name='imagen'/> */}

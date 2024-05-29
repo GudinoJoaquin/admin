@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Input from "../components/Input";
 import ThemeSwitch from "../components/ThemeSwitch";
 import Loader from "react-js-loader";
+import { RUTAS } from "../assets/utils/constants";
 
 export default function ModificarAnuncio() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -11,6 +12,8 @@ export default function ModificarAnuncio() {
 
   const [anuncio, setAnuncio] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const {home, enviarEditar, crear} = RUTAS
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,13 +66,13 @@ export default function ModificarAnuncio() {
       <header className="flex justify-end items-center gap-[30px] md:translate-y-[2px] translate-y-[20px] ml-[10px] dark:text-slate-200">
         <Link
           className="hover:text-emerald-600 scale-[1.2] font-semibold text-[20px] transition duration-[.3s]"
-          to="/"
+          to={home}
         >
           Inicio
         </Link>
         <Link
           className="hover:text-orange-600 scale-110 font-semibold text-[20px] transition duration-[.3s]"
-          to="../crearAnuncio"
+          to={crear}
         >
           Crear anuncio
         </Link>
@@ -82,7 +85,7 @@ export default function ModificarAnuncio() {
 
         <form
           method="post"
-          action="https://anuncios.vercel.app/admin/editar-anuncio"
+          action={enviarEditar}
         >
           <Input
             label="Titulo"

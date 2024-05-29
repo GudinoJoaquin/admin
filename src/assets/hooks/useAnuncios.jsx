@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useAnuncios() {
+export default function useAnuncios(path) {
   const [anuncios, setAnuncios] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -8,9 +8,9 @@ export default function useAnuncios() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = "https://anuncios.vercel.app/anuncios";
+      const url = path;
       try {
-        const response = await fetch(url);
+        const response = await fetch(path);
         const data = await response.json();
         setAnuncios(data);
         setLoading(false);

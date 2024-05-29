@@ -7,7 +7,7 @@ import useAnuncios from "../assets/hooks/useAnuncios";
 
 export default function AdminAnuncios() {
   const { anuncios, loading, currentPage, setCurrentPage, anunciosPerPage } =
-    useAnuncios();
+    useAnuncios("https://anuncios.vercel.app/anuncios/");
 
   // Calcular el índice del último anuncio de la página actual
   const indexOfLastAd = currentPage * anunciosPerPage;

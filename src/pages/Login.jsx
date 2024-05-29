@@ -4,10 +4,12 @@ import Input from "../components/Input";
 import { Context } from "../App";
 import { USUARIO } from "../assets/utils/constants";
 import { setCookie } from "../assets/utils/cookie";
+import { RUTAS } from "../assets/utils/constants";
 
 export default function Login() {
   const [signedIn, setSignedIn] = useContext(Context);
   const navigate = useNavigate();
+  const { home } = RUTAS;
 
   const submit = (e) => {
     e.preventDefault();
@@ -17,8 +19,8 @@ export default function Login() {
 
     if (inputUser === user && inputPass === pass) {
       setSignedIn(true);
-      setCookie('isAdmin', true, 3); // Crear cookie para el usuario admin por 3 horas
-      navigate('/');
+      setCookie("isAdmin", true, 3); // Crear cookie para el usuario admin por 3 horas
+      navigate(home);
     } else {
       setSignedIn(false);
     }
