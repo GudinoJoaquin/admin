@@ -44,7 +44,7 @@ export default function Login() {
         Iniciar sesión
       </h2>
 
-      <form method="get" onSubmit={submit}>
+      <form onSubmit={submit}>
         <Input label="Usuario" type="text" name="user" />
         <Input label="Contraseña" type="password" name="pass" />
 
