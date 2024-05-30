@@ -23,7 +23,7 @@ export default function Login() {
 
     if (inputUser === user && inputPass === pass) {
       setSignedIn(true);
-      setCookie(name, value, 0.0000001);// Establece la expiración en 3 horas
+      //setCookie(name, value, 0.0000001);// Establece la expiración en 3 horas
       navigate(home);
     } else {
       setSignedIn(false);

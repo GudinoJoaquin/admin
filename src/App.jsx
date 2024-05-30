@@ -14,14 +14,12 @@ export default function App() {
   const [signedIn, setSignedIn] = useState(false);
   const { home, crear, editar, login } = RUTAS;
 
-  useEffect(() => {
-    const cookie = getCookie(name); // Lee la cookie
-    console.log(`Name: ${name} Value: ${value} Cookie: ${cookie}`)
-    console.log(cookie ? true : false)
-    if (cookie === value) {
-      setSignedIn(true);
-    }
-  }, []); // Ejecutar solo una vez al cargar la aplicación
+  // useEffect(() => {
+  //   const cookie = getCookie(name); // Lee la cookie
+  //   if (cookie === value) {
+  //     setSignedIn(true);
+  //   }
+  // }, []); // Ejecutar solo una vez al cargar la aplicación
 
   return (
     <Context.Provider value={{ signedIn, setSignedIn }}>
