@@ -1,6 +1,6 @@
 export const USUARIO = {
-  user: "ognaepgnearpoingNwóniiNKOnniNKNIpngiwutr8(=/(?&%/%(/=",
-  pass: "FFIORWFNWAIPMFIPWFJipnfewipnfiwnfrw07807(=/?=(/?(u0fnweifmmpwrvínwv",
+  user: "admin",
+  pass: "admin",
 };
 
 export const RUTAS = {
