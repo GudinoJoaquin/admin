@@ -1,6 +1,6 @@
 export const USUARIO = {
-  user: "admin",
-  pass: "admin",
+  user: "DiegoAdmin",
+  pass: "EESTN5admin",
 };
 
 export const RUTAS = {
