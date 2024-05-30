@@ -1,4 +1,4 @@
-const CHARS = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz0123456789!#$%&/()=?¿¡-:.;,_{[}]^~+*@|°¬';
+const CHARS = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz0123456789';
 
 export function setCodigo(length) {
   let codigo = '';

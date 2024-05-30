@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { Context } from "../App";
@@ -9,6 +9,7 @@ import { setCodigo } from "../assets/utils/functions";
 
 export default function Login() {
   const { setSignedIn } = useContext(Context);
+  const [attempts, setAttempts] = useState(0);
   const navigate = useNavigate();
   const { home } = RUTAS;
   const { name, value } = COOKIE_INFO;
@@ -25,6 +26,15 @@ export default function Login() {
       navigate(home);
     } else {
       setSignedIn(false);
+      setAttempts((prevAttempts) => prevAttempts + 1);
+      console.log(attempts);
+      if (attempts >= 10) {
+        console.log("Esperando 30 segundos");
+        setTimeout(() => {
+          setAttempts(0);
+          console.log('Intentos establecidos a 0')
+        }, 30000);
+      }
     }
   };
 
@@ -34,7 +44,7 @@ export default function Login() {
         Iniciar sesión
       </h2>
 
-      <form method="post" onSubmit={submit}>
+      <form method="get"  action="https://anuncios.vercel.app/login">
         <Input label="Usuario" type="text" name="user" />
         <Input label="Contraseña" type="password" name="pass" />
 

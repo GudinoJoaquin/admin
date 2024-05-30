@@ -12,14 +12,14 @@ export const Context = React.createContext();
 export default function App() {
   const [signedIn, setSignedIn] = useState(false);
   const { home, crear, editar, login } = RUTAS;
-  const { name, value } = COOKIE_INFO
+  // const { name, value } = COOKIE_INFO
 
-  useEffect(() => {
-    const cookie = getCookie(name); // Lee la cookie
-    if (cookie === value) {
-      setSignedIn(true);
-    }
-  }, []); // Ejecutar solo una vez al cargar la aplicación
+  // useEffect(() => {
+  //   const cookie = getCookie(name); // Lee la cookie
+  //   if (cookie === value) {
+  //     setSignedIn(true);
+  //   }
+  // }, []); // Ejecutar solo una vez al cargar la aplicación
 
   return (
     <Context.Provider value={{ signedIn, setSignedIn }}>
