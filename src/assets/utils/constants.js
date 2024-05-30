@@ -1,6 +1,6 @@
 export const USUARIO = {
-  user: "admin",
-  pass: "admin",
+  user: "ognaepgnearpoingNwóniiNKOnniNKNIpngiwutr8(=/(?&%/%(/=",
+  pass: "FFIORWFNWAIPMFIPWFJipnfewipnfiwnfrw07807(=/?=(/?(u0fnweifmmpwrvínwv",
 };
 
 export const RUTAS = {
@@ -12,4 +12,3 @@ export const RUTAS = {
   eliminar: "https://anuncios.vercel.app/eliminar-anuncio?id=",
   Login: "/login",
 };
-
