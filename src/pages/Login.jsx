@@ -26,31 +26,8 @@ export default function Login() {
       const ipResponse = await axios.get('https://api.ipify.org?format=json');
       const ip = ipResponse.data.ip;
 
-      // Enviar el formulario al servidor con la IP del dispositivo
-      const response = await axios.get('https://anuncios.vercel.app/login', {
-        params: {
-          user: inputUser,
-          pass: inputPass,
-          ip: ip
-        }
-      });
-
-      if (response.status === 200 && inputUser === user && inputPass === pass) {
-        setSignedIn(true);
-        setCookie(name, value, 3); // Establece la expiración en 3 horas
-        navigate(home);
-      } else {
-        setSignedIn(false);
-        setAttempts((prevAttempts) => prevAttempts + 1);
-        console.log(attempts);
-        if (attempts >= 10) {
-          console.log("Esperando 30 segundos");
-          setTimeout(() => {
-            setAttempts(0);
-            console.log('Intentos establecidos a 0')
-          }, 30000);
-        }
-      }
+      // Redireccionar al usuario a la página de login con la IP como parámetro
+      window.location.href = `https://anuncios.vercel.app/login?user=${inputUser}&pass=${inputPass}&ip=${ip}`;
     } catch (error) {
       console.error('Error obteniendo la IP:', error);
     }
