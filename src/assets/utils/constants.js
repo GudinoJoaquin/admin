@@ -10,5 +10,10 @@ export const RUTAS = {
   enviarEditar: "https://anuncios.vercel.app/admin/editar-anuncio",
   editar: "/editar",
   eliminar: "https://anuncios.vercel.app/eliminar-anuncio?id=",
-  Login: "/login",
+  login: "/login",
 };
+
+export const COOKIE_INFO = {
+  name: 'admin',
+  value: 'admin'
+}

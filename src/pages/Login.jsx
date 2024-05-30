@@ -3,28 +3,27 @@ import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { Context } from "../App";
 import { USUARIO } from "../assets/utils/constants";
-import { setCookie } from "../assets/utils/cookie";
+import { setCookie, deleteCookie } from "../assets/utils/cookie";
 import { RUTAS } from "../assets/utils/constants";
 import { setCodigo } from "../assets/utils/functions";
 
-const name = setCodigo(32);
-const value = setCodigo(32);
+export const name = setCodigo(32)
+export const value = setCodigo(32)
 
 export default function Login() {
-  const { signedIn, setSignedIn } = useContext(Context);
+  const { setSignedIn } = useContext(Context);
   const navigate = useNavigate();
   const { home } = RUTAS;
 
   const submit = (e) => {
-    e.preventDefault(); // Crear cookie para el usuario admin por 3 horas
+    e.preventDefault();
     const { user, pass } = USUARIO;
     const inputUser = document.querySelector("input[name='user']").value;
     const inputPass = document.querySelector("input[name='pass']").value;
 
     if (inputUser === user && inputPass === pass) {
       setSignedIn(true);
-      setCookie(name, value, 3); // Crear cookie para el usuario admin por 3 horas
-      // Crear cookie para el usuario admin por 3 horas
+      setCookie(name, value, 0.0000001);// Establece la expiración en 3 horas
       navigate(home);
     } else {
       setSignedIn(false);
@@ -53,6 +52,3 @@ export default function Login() {
     </div>
   );
 }
-
-export const aux = name;
-export const auc = value;

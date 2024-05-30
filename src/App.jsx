@@ -4,33 +4,39 @@ import Anuncios from "./pages/Anuncios.jsx";
 import CrearAnuncio from "./pages/CrearAnuncio.jsx";
 import ModificarAnuncios from "./pages/ModificarAnuncios.jsx";
 import Login from "./pages/Login.jsx";
-import { getCookie } from "./assets/utils/cookie.js";
+import { getCookie, deleteCookie } from "./assets/utils/cookie.js";
 import { RUTAS } from "./assets/utils/constants.js";
-import { aux, auc} from './pages/Login.jsx'
+import { name, value } from "./pages/Login.jsx";
 
 export const Context = React.createContext();
 
 export default function App() {
   const [signedIn, setSignedIn] = useState(false);
-  const [codigo, setCodigoState] = useState();
   const { home, crear, editar, login } = RUTAS;
-  // const {name, value} = COOKIE_INFO
 
   useEffect(() => {
-    const isAdminCookie = getCookie(aux); // Leer la cookie 'isAdmin'
-    if (isAdminCookie === auc) {
+    const cookie = getCookie(name); // Lee la cookie
+    console.log(`Name: ${name} Value: ${value} Cookie: ${cookie}`)
+    console.log(cookie ? true : false)
+    if (cookie === value) {
       setSignedIn(true);
     }
-  }, [aux, auc]); // Ejecutar solo una vez al cargar la aplicación
+  }, []); // Ejecutar solo una vez al cargar la aplicación
 
   return (
-    <Context.Provider value={{ signedIn, setSignedIn, codigo, setCodigo: setCodigoState }}>
+    <Context.Provider value={{ signedIn, setSignedIn }}>
       <Router>
         <Routes>
           <Route path={home} element={signedIn ? <Anuncios /> : <Login />} />
           <Route path={login} element={<Login />} />
-          <Route path={crear} element={signedIn ? <CrearAnuncio /> : <Login />} />
-          <Route path={editar} element={signedIn ? <ModificarAnuncios /> : <Login />} />
+          <Route
+            path={crear}
+            element={signedIn ? <CrearAnuncio /> : <Login />}
+          />
+          <Route
+            path={editar}
+            element={signedIn ? <ModificarAnuncios /> : <Login />}
+          />
         </Routes>
       </Router>
     </Context.Provider>
