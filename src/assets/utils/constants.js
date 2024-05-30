@@ -14,6 +14,6 @@ export const RUTAS = {
 };
 
 export const COOKIE_INFO = {
-  name: 'admin',
-  value: 'admin'
+  name: 'SVZHJm6L6RB5t6VeLESJHv33qYPY1XXfPrpU6bavKyBjPvU5EXKyp3pxSg4v',
+  value: 'eEz4q8VQ7PpDXaJDutEwVyN52KUEXcfKJ2A4wUBNJp6PgBkSF2cXpJ3tC8uz'
 }

@@ -4,16 +4,14 @@ import Input from "../components/Input";
 import { Context } from "../App";
 import { USUARIO } from "../assets/utils/constants";
 import { setCookie, deleteCookie } from "../assets/utils/cookie";
-import { RUTAS } from "../assets/utils/constants";
+import { RUTAS, COOKIE_INFO } from "../assets/utils/constants";
 import { setCodigo } from "../assets/utils/functions";
-
-export const name = setCodigo(32)
-export const value = setCodigo(32)
 
 export default function Login() {
   const { setSignedIn } = useContext(Context);
   const navigate = useNavigate();
   const { home } = RUTAS;
+  const { name, value } = COOKIE_INFO;
 
   const submit = (e) => {
     e.preventDefault();
@@ -23,7 +21,7 @@ export default function Login() {
 
     if (inputUser === user && inputPass === pass) {
       setSignedIn(true);
-      //setCookie(name, value, 0.0000001);// Establece la expiración en 3 horas
+      setCookie(name, value, 3); // Establece la expiración en 3 horas
       navigate(home);
     } else {
       setSignedIn(false);
