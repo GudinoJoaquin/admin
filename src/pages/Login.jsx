@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Input from "../components/Input";
 import { Context } from "../App";
 import { USUARIO } from "../assets/utils/constants";
@@ -14,27 +15,44 @@ export default function Login() {
   const { home } = RUTAS;
   const { name, value } = COOKIE_INFO;
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
     const { user, pass } = USUARIO;
     const inputUser = document.querySelector("input[name='user']").value;
     const inputPass = document.querySelector("input[name='pass']").value;
 
-    if (inputUser === user && inputPass === pass) {
-      setSignedIn(true);
-      setCookie(name, value, 3); // Establece la expiración en 3 horas
-      navigate(home);
-    } else {
-      setSignedIn(false);
-      setAttempts((prevAttempts) => prevAttempts + 1);
-      console.log(attempts);
-      if (attempts >= 10) {
-        console.log("Esperando 30 segundos");
-        setTimeout(() => {
-          setAttempts(0);
-          console.log('Intentos establecidos a 0')
-        }, 30000);
+    // Obtener la IP pública del dispositivo
+    try {
+      const ipResponse = await axios.get('https://api.ipify.org?format=json');
+      const ip = ipResponse.data.ip;
+
+      // Enviar el formulario al servidor con la IP del dispositivo
+      const response = await axios.get('https://anuncios.vercel.app/login', {
+        params: {
+          user: inputUser,
+          pass: inputPass,
+          ip: ip
+        }
+      });
+
+      if (response.status === 200 && inputUser === user && inputPass === pass) {
+        setSignedIn(true);
+        setCookie(name, value, 3); // Establece la expiración en 3 horas
+        navigate(home);
+      } else {
+        setSignedIn(false);
+        setAttempts((prevAttempts) => prevAttempts + 1);
+        console.log(attempts);
+        if (attempts >= 10) {
+          console.log("Esperando 30 segundos");
+          setTimeout(() => {
+            setAttempts(0);
+            console.log('Intentos establecidos a 0')
+          }, 30000);
+        }
       }
+    } catch (error) {
+      console.error('Error obteniendo la IP:', error);
     }
   };
 
@@ -44,7 +62,7 @@ export default function Login() {
         Iniciar sesión
       </h2>
 
-      <form method="get"  action="https://anuncios.vercel.app/login">
+      <form onSubmit={submit}>
         <Input label="Usuario" type="text" name="user" />
         <Input label="Contraseña" type="password" name="pass" />
 
