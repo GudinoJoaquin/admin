@@ -5,21 +5,26 @@ import { Context } from "../App";
 import { USUARIO } from "../assets/utils/constants";
 import { setCookie } from "../assets/utils/cookie";
 import { RUTAS } from "../assets/utils/constants";
+import { setCodigo } from "../assets/utils/functions";
+
+const name = setCodigo(32);
+const value = setCodigo(32);
 
 export default function Login() {
-  const [signedIn, setSignedIn] = useContext(Context);
+  const { signedIn, setSignedIn } = useContext(Context);
   const navigate = useNavigate();
   const { home } = RUTAS;
 
   const submit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Crear cookie para el usuario admin por 3 horas
     const { user, pass } = USUARIO;
     const inputUser = document.querySelector("input[name='user']").value;
     const inputPass = document.querySelector("input[name='pass']").value;
 
     if (inputUser === user && inputPass === pass) {
       setSignedIn(true);
-      setCookie("isAdmin", true, 3); // Crear cookie para el usuario admin por 3 horas
+      setCookie(name, value, 3); // Crear cookie para el usuario admin por 3 horas
+      // Crear cookie para el usuario admin por 3 horas
       navigate(home);
     } else {
       setSignedIn(false);
@@ -48,3 +53,6 @@ export default function Login() {
     </div>
   );
 }
+
+export const aux = name;
+export const auc = value;

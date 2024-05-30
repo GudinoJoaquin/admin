@@ -12,3 +12,4 @@ export const RUTAS = {
   eliminar: "https://anuncios.vercel.app/eliminar-anuncio?id=",
   Login: "/login",
 };
+
