@@ -10,7 +10,9 @@ export default function Configurar() {
   const { home, enviarEditar, crear } = RUTAS;
   const usser = "DiegoAdmin";
   const pass = "EESTN5admin";
-  const cookie = "baidwabdiuabwdiuawbiudbawiudb";
+  const cookieName = "baidwabdiuabwdiuawbiudbawiudb";
+  const cookieValue = "nd9aw87h19hd918h2ed1d981hd981h29d8h1d";
+
 
   const [showModal, setShowModal] = useState(false);
   const handleCambiarClick = (event) => {
@@ -54,11 +56,19 @@ export default function Configurar() {
           />
 
           <Input
-            label="Cookie"
+            label="Cookie Name"
             type="text"
-            name="cookie"
+            name="cookieName"
             placeholder=""
-            value={cookie}
+            value={cookieName}
+          />
+
+<Input
+            label="Cookie Value"
+            type="text"
+            name="cookieValue"
+            placeholder=""
+            value={cookieValue}
           />
 
           <div className="flex justify-center mt-[20px]">
