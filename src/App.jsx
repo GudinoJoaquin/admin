@@ -4,6 +4,7 @@ import Anuncios from "./pages/Anuncios.jsx";
 import CrearAnuncio from "./pages/CrearAnuncio.jsx";
 import ModificarAnuncios from "./pages/ModificarAnuncios.jsx";
 import Login from "./pages/Login.jsx";
+import Configurar from "./pages/Configurar.jsx";
 import { getCookie } from "./assets/utils/cookie.js";
 import { RUTAS, COOKIE_INFO } from "./assets/utils/constants.js";
 
@@ -11,7 +12,7 @@ export const Context = React.createContext();
 
 export default function App() {
   const [signedIn, setSignedIn] = useState(false);
-  const { home, crear, editar, login } = RUTAS;
+  const { home, crear, editar, login, configurar } = RUTAS;
   const { name, value } = COOKIE_INFO
 
   useEffect(() => {
@@ -34,6 +35,10 @@ export default function App() {
           <Route
             path={editar}
             element={signedIn ? <ModificarAnuncios /> : <Login />}
+          />
+          <Route
+            path={configurar}
+            element={signedIn ? <Configurar /> : <Login />}
           />
         </Routes>
       </Router>

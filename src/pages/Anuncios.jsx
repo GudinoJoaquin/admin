@@ -4,6 +4,7 @@ import ThemeSwitch from "../components/ThemeSwitch";
 import { Link } from "react-router-dom";
 import Loader from "react-js-loader";
 import useAnuncios from "../assets/hooks/useAnuncios";
+import Nav from "../components/navBar";
 
 export default function AdminAnuncios() {
   const { anuncios, loading, currentPage, setCurrentPage, anunciosPerPage } =
@@ -19,21 +20,7 @@ export default function AdminAnuncios() {
   return (
     <>
       <div className="bg-white dark:bg-[#1D1D1D] ">
-        <header className="flex justify-end items-center gap-[30px] md:translate-y-[2px] translate-y-[20px] ml-[10px] dark:text-slate-200">
-          <Link
-            className="text-emerald-600 scale-[1.2] font-bold text-[20px] transition duration-[.3s]"
-            to=""
-          >
-            Inicio
-          </Link>
-          <Link
-            className="hover:text-orange-600 scale-110 font-bold text-[20px] transition duration-[.3s]"
-            to="./crear"
-          >
-            Crear anuncio
-          </Link>
-          <ThemeSwitch />
-        </header>
+        <Nav />
         {loading ? (
           <div className="flex justify-center items-center h-screen">
             <Loader

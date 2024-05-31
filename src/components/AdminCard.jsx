@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 import { RUTAS } from "../assets/utils/constants";
+import ModalConfirmacion from "../components/modal";
 
 export default function AdminCard({
   id,
@@ -120,27 +121,13 @@ export default function AdminCard({
         </div>
       </div>
       {showModal && (
-        <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-slate-950 p-8 rounded-lg shadow-md">
-            <p className="text-lg text-gray-800 dark:text-slate-200 mb-4">
-              ¿Estás seguro de que deseas eliminar este anuncio?
-            </p>
-            <div className="flex justify-center">
-              <button
-                onClick={confirmarEliminar}
-                className="bg-red-600 text-white px-4 py-2 rounded-md mr-4 hover:bg-red-700"
-              >
-                Confirmar
-              </button>
-              <button
-                onClick={cancelarEliminar}
-                className="bg-gray-400 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-500"
-              >
-                Cancelar
-              </button>
-            </div>
-          </div>
-        </div>
+        <ModalConfirmacion
+          mensaje="¿Estás seguro de que deseas eliminar este anuncio?"
+          botonColor="bg-red-600"
+          textoBoton="Confirmar"
+          onConfirm={confirmarEliminar}
+          onCancel={cancelarEliminar}
+        />
       )}
     </div>
   );

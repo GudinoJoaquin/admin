@@ -4,6 +4,8 @@ import Input from "../components/Input";
 import ThemeSwitch from "../components/ThemeSwitch";
 import Loader from "react-js-loader";
 import { RUTAS } from "../assets/utils/constants";
+import ModalConfirmacion from "../components/modal";
+import Nav from "../components/navBar";
 
 export default function ModificarAnuncio() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -13,7 +15,20 @@ export default function ModificarAnuncio() {
   const [anuncio, setAnuncio] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const {home, enviarEditar, crear} = RUTAS
+  const [showModal, setShowModal] = useState(false);
+  const handleCambiarClick = (event) => {
+    event.preventDefault();
+    setShowModal(true);
+  };
+  const confirmarCambiar = () => {
+    // Aquí puedes agregar la lógica para enviar el formulario si es necesario.
+    // Por ahora, solo cerramos el modal.
+    setShowModal(false);
+  };
+  const cancelarCambiar = () => {
+    setShowModal(false);
+  };
+  const {home, enviarEditar, crear, configurar} = RUTAS
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,31 +77,14 @@ export default function ModificarAnuncio() {
   }
 
   return (
-    <div className="bg-white dark:bg-slate-900 h-[100.2vh] mt-[-2px] mb-[-2px]">
-      <header className="flex justify-end items-center gap-[30px] md:translate-y-[2px] translate-y-[20px] ml-[10px] dark:text-slate-200">
-        <Link
-          className="hover:text-emerald-600 scale-[1.2] font-semibold text-[20px] transition duration-[.3s]"
-          to={home}
-        >
-          Inicio
-        </Link>
-        <Link
-          className="hover:text-orange-600 scale-110 font-semibold text-[20px] transition duration-[.3s]"
-          to={crear}
-        >
-          Crear anuncio
-        </Link>
-        <ThemeSwitch />
-      </header>
+    <div className="bg-white dark:bg-slate-900 h-[110vh]">
+      <Nav/>
       <div className="max-w-md mx-auto relative overflow-hidden z-10 bg-gray-200 dark:bg-slate-950 p-8 rounded-lg shadow-md mt-[60px]">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-200 mb-6 text-center">
           Modificar anuncio
         </h2>
 
-        <form
-          method="post"
-          action={enviarEditar}
-        >
+        <form id="modificarAnuncioForm" method="post" action={enviarEditar}>
           <Input
             label="Titulo"
             type="text"
@@ -109,7 +107,7 @@ export default function ModificarAnuncio() {
               rows="3"
               name="mensaje"
               id="bio"
-              defaultValue={anuncio.mensaje || ""} // Usa defaultValue para establecer el valor inicial del textarea
+              defaultValue={anuncio.mensaje || ""}
             ></textarea>
           </div>
 
@@ -132,13 +130,22 @@ export default function ModificarAnuncio() {
           <div className="flex justify-center mt-[20px]">
             <button
               className="bg-gray-900 border text-gray-200 px-4 py-2 font-bold rounded-md hover:bg-gray-300 hover:text-gray-900 hover:border border-gray-900 transition duration-[.3s]"
-              type="submit"
+              onClick={handleCambiarClick}
             >
               Enviar
             </button>
           </div>
         </form>
       </div>
+      {showModal && (
+        <ModalConfirmacion
+          mensaje="¿Estás seguro de que deseas modificar este anuncio?"
+          botonColor="bg-orange-600"
+          textoBoton="Confirmar"
+          onConfirm={confirmarCambiar}
+          onCancel={cancelarCambiar}
+        />
+      )}
     </div>
   );
 }

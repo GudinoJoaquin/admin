@@ -3,50 +3,48 @@ import Input from "../components/Input";
 import ThemeSwitch from "../components/ThemeSwitch";
 import { Link } from "react-router-dom";
 import { RUTAS } from "../assets/utils/constants";
+import ModalConfirmacion from "../components/modal";
+import Nav from "../components/navBar";
 
 export default function CrearAnuncio() {
   const [currentPath, setCurrentPath] = useState(window.location.search);
-  const { home, enviar } = RUTAS;
+  const { home, enviar, configurar } = RUTAS;
+
+  const [showModal, setShowModal] = useState(false);
+  const handleCambiarClick = (event) => {
+    event.preventDefault();
+    setShowModal(true);
+  };
+  const confirmarCambiar = () => {
+    // Aquí puedes agregar la lógica para enviar el formulario si es necesario.
+    // Por ahora, solo cerramos el modal.
+    setShowModal(false);
+  };
+  const cancelarCambiar = () => {
+    setShowModal(false);
+  };
 
   return (
-    <div className="bg-white dark:bg-slate-900 mt-[-2px] h-[100vh]">
-      <header className="flex justify-end items-center gap-[50px] md:mt-[2px] mt-[20px] ml-[10px]">
-        <Link
-          className="hover:text-emerald-600 hover:scale-[1.2] font-semibold text-[20px] transition duration-[.3s] dark:text-white"
-          to={home}
-        >
-          <p className="hover:text-emerald-600 transition duration-[.3s]">
-            Inicio
-          </p>
-        </Link>
-        <Link
-          className="text-orange-600 scale-110 font-bold text-[20px] transition duration-[.3s]"
-          to=""
-        >
-          Crear anuncio
-        </Link>
-        <ThemeSwitch />
-      </header>
+    <div className="bg-white dark:bg-slate-900 h-[110vh]">
+      <Nav/>
       {currentPath === "/" && <AdminAnuncios />}
-      <div class="max-w-md mx-auto relative overflow-hidden z-10 bg-gray-200 dark:bg-slate-950 p-8 rounded-lg shadow-2xl mt-[40px]">
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-slate-200 mb-6 text-center">
+      <div className="max-w-md mx-auto relative overflow-hidden z-10 bg-gray-200 dark:bg-slate-950 p-8 rounded-lg shadow-2xl mt-[40px]">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-200 mb-6 text-center">
           Crear anuncio
         </h2>
 
-        <form method="post" action={enviar}>
+        <form id="crearAnuncioForm" method="post" action={enviar}>
           <Input label="Titulo" type="text" name="titulo" />
 
-          {/* <FileInput label='Subir imagen o pdf' name='imagen'/> */}
-
-          <div class="mb-4">
+          <div className="mb-4">
             <label
-              class="block text-sm font-medium text-gray-900 dark:text-slate-200"
-              for="bio"
+              className="block text-sm font-medium text-gray-900 dark:text-slate-200"
+              htmlFor="bio"
             >
               Mensaje
             </label>
             <textarea
-              className="mt-1 p-2 w-full bg-gray-300 dark:bg-slate-900 dark:text-slate-200 border-none focus:outline-none  rounded-md text-gray-900 resize-none"
+              className="mt-1 p-2 w-full bg-gray-300 dark:bg-slate-900 dark:text-slate-200 border-none focus:outline-none rounded-md text-gray-900 resize-none"
               rows="3"
               name="mensaje"
               id="bio"
@@ -65,16 +63,25 @@ export default function CrearAnuncio() {
             placeholder="Enlace del contenido adjunto"
           />
 
-          <div class="flex justify-center mt-[20px]">
+          <div className="flex justify-center mt-[20px]">
             <button
-              class="bg-gray-900 dark:bg-slate-200 dark:text-slate-950 dark:hover:bg-slate-950 dark:hover:text-slate-200 dark:hover:border-2 dark:hover:border-slate-200 border text-gray-200 px-4 py-2 font-bold rounded-md hover:bg-gray-300 hover:text-gray-900 hover:border border-gray-900 transition duration-[.3s]"
-              type="submit"
+              className="bg-gray-900 dark:bg-slate-200 dark:text-slate-950 dark:hover:bg-slate-950 dark:hover:text-slate-200 dark:hover:border-2 dark:hover:border-slate-200 border text-gray-200 px-4 py-2 font-bold rounded-md hover:bg-gray-300 hover:text-gray-900 hover:border border-gray-900 transition duration-[.3s]"
+              onClick={handleCambiarClick}
             >
               Enviar
             </button>
           </div>
         </form>
       </div>
+      {showModal && (
+        <ModalConfirmacion
+          mensaje="¿Estás seguro de que deseas crear este anuncio?"
+          botonColor="bg-emerald-900"
+          textoBoton="Confirmar"
+          onConfirm={confirmarCambiar}
+          onCancel={cancelarCambiar}
+        />
+      )}
     </div>
   );
 }

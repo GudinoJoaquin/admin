@@ -1,3 +1,4 @@
+
 export const USUARIO = {
   user: "DiegoAdmin",
   pass: "EESTN5admin",
@@ -11,6 +12,7 @@ export const RUTAS = {
   editar: "/editar",
   eliminar: "https://anuncios.vercel.app/eliminar-anuncio?id=",
   login: "/login",
+  configurar: "/configurar"
 };
 
 export const COOKIE_INFO = {
