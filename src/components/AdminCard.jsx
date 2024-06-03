@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 import { RUTAS } from "../assets/utils/constants";
@@ -13,7 +13,6 @@ export default function AdminCard({
   contenido_adjunto: adjunto,
 }) {
   const [showModal, setShowModal] = useState(false);
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const { home, editar, eliminar } = RUTAS;
 

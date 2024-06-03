@@ -1,34 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Input from "../components/Input";
-import ThemeSwitch from "../components/ThemeSwitch";
 import Loader from "react-js-loader";
 import { RUTAS } from "../assets/utils/constants";
-import ModalConfirmacion from "../components/modal";
 import Nav from "../components/navBar";
 
 export default function ModificarAnuncio() {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("id") || "ID del anuncio";
-  const titulo = urlParams.get('titulo') || "Titulo del anuncio"
+  const titulo = urlParams.get("titulo") || "Titulo del anuncio";
 
   const [anuncio, setAnuncio] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  const [showModal, setShowModal] = useState(false);
-  const handleCambiarClick = (event) => {
-    event.preventDefault();
-    setShowModal(true);
-  };
-  const confirmarCambiar = () => {
-    // Aquí puedes agregar la lógica para enviar el formulario si es necesario.
-    // Por ahora, solo cerramos el modal.
-    setShowModal(false);
-  };
-  const cancelarCambiar = () => {
-    setShowModal(false);
-  };
-  const {home, enviarEditar, crear, configurar} = RUTAS
+  const { enviarEditar } = RUTAS;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,8 +49,6 @@ export default function ModificarAnuncio() {
       </div>
     );
   }
-
-  // Si el anuncio no se ha cargado correctamente, mostrar un mensaje de error
   if (!anuncio) {
     return (
       <div className="flex justify-center items-center h-screen bg-slate-900">
@@ -78,7 +59,7 @@ export default function ModificarAnuncio() {
 
   return (
     <div className="bg-white dark:bg-slate-900 h-[110vh]">
-      <Nav/>
+      <Nav />
       <div className="max-w-md mx-auto relative overflow-hidden z-10 bg-gray-200 dark:bg-slate-950 p-8 rounded-lg shadow-md mt-[60px]">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-200 mb-6 text-center">
           Modificar anuncio
@@ -130,22 +111,13 @@ export default function ModificarAnuncio() {
           <div className="flex justify-center mt-[20px]">
             <button
               className="bg-gray-900 border text-gray-200 px-4 py-2 font-bold rounded-md hover:bg-gray-300 hover:text-gray-900 hover:border border-gray-900 transition duration-[.3s]"
-              onClick={handleCambiarClick}
+              
             >
               Enviar
             </button>
           </div>
         </form>
       </div>
-      {showModal && (
-        <ModalConfirmacion
-          mensaje="¿Estás seguro de que deseas modificar este anuncio?"
-          botonColor="bg-orange-600"
-          textoBoton="Confirmar"
-          onConfirm={confirmarCambiar}
-          onCancel={cancelarCambiar}
-        />
-      )}
     </div>
   );
 }

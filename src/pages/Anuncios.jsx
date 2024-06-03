@@ -1,7 +1,4 @@
-import React, { useState, useEffect } from "react";
 import AdminCard from "../components/AdminCard";
-import ThemeSwitch from "../components/ThemeSwitch";
-import { Link } from "react-router-dom";
 import Loader from "react-js-loader";
 import useAnuncios from "../assets/hooks/useAnuncios";
 import Nav from "../components/navBar";

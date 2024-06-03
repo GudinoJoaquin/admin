@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function ModalConfirmacion({
   mensaje,
   botonColor,
@@ -12,7 +10,7 @@ export default function ModalConfirmacion({
       <div className="bg-white dark:bg-slate-950 p-8 rounded-lg shadow-md">
         <p className="text-lg text-gray-800 dark:text-slate-200 mb-4">
           {mensaje}
-        </p>
+        </p> 
         <div className="flex justify-center">
           <button
             onClick={onConfirm}

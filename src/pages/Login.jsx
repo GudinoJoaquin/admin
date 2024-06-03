@@ -1,18 +1,33 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { Context } from "../App";
 import { USUARIO } from "../assets/utils/constants";
-import { setCookie, deleteCookie } from "../assets/utils/cookie";
+import { setCookie } from "../assets/utils/cookie";
 import { RUTAS, COOKIE_INFO } from "../assets/utils/constants";
-import { setCodigo } from "../assets/utils/functions";
 
 export default function Login() {
   const { setSignedIn } = useContext(Context);
+  const [codigo, setCodigo] = useState(null);
   const [attempts, setAttempts] = useState(0);
   const navigate = useNavigate();
   const { home } = RUTAS;
   const { name, value } = COOKIE_INFO;
+
+  
+  useEffect(() => {
+    const url = "https://anuncios.vercel.app/resend";
+    async function fetchData(url) {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Error al fetchear datos");
+      }
+      const data = await response.json();
+      console.log(data)
+      setCodigo(data);
+    }
+    fetchData(url)
+  }, []);
 
   const submit = (e) => {
     e.preventDefault();
@@ -21,9 +36,12 @@ export default function Login() {
     const inputPass = document.querySelector("input[name='pass']").value;
 
     if (inputUser === user && inputPass === pass) {
-      setSignedIn(true);
-      setCookie(name, value, 3); // Establece la expiración en 3 horas
-      navigate(home);
+      const verification = prompt("Ingrese codigo de verificacion: ");
+      if (verification == codigo) {
+        setSignedIn(true);
+        setCookie(name, value, 3); // Establece la expiración en 3 horas
+        navigate(home);
+      }
     } else {
       setSignedIn(false);
       setAttempts((prevAttempts) => prevAttempts + 1);
@@ -32,7 +50,7 @@ export default function Login() {
         console.log("Esperando 30 segundos");
         setTimeout(() => {
           setAttempts(0);
-          console.log('Intentos establecidos a 0')
+          console.log("Intentos establecidos a 0");
         }, 30000);
       }
     }

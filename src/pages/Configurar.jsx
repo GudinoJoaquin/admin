@@ -1,96 +1,72 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Input from "../components/Input";
-import ThemeSwitch from "../components/ThemeSwitch";
-import { RUTAS } from "../assets/utils/constants";
-import ModalConfirmacion from "../components/modal";
-import Nav from "../components/navBar";
+import { useState } from 'react';
+import { USUARIO, updateUsuario } from '../assets/utils/constants';
+import Input from '../components/Input';
+import Nav from '../components/navBar';
 
 export default function Configurar() {
-  const { home, enviarEditar, crear } = RUTAS;
-  const usser = "DiegoAdmin";
-  const pass = "EESTN5admin";
-  const cookieName = "baidwabdiuabwdiuawbiudbawiudb";
-  const cookieValue = "nd9aw87h19hd918h2ed1d981hd981h29d8h1d";
+  const [usuario, setUsuario] = useState({
+    user: USUARIO.user,
+    pass: USUARIO.pass,
+  });
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUsuario((prevUsuario) => ({
+      ...prevUsuario,
+      [name]: value,
+    }));
+    console.log(`Campo ${name} cambiado a: ${value}`); // Para depuración
+  };
 
-  const [showModal, setShowModal] = useState(false);
-  const handleCambiarClick = (event) => {
-    event.preventDefault();
-    setShowModal(true);
-  };
-  const confirmarCambiar = () => {
-    // Aquí puedes agregar la lógica para enviar el formulario si es necesario.
-    // Por ahora, solo cerramos el modal.
-    setShowModal(false);
-  };
-  const cancelarCambiar = () => {
-    setShowModal(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Formulario enviado'); // Para depuración
+    // Actualizar el objeto USUARIO
+    updateUsuario({
+      user: usuario.user,
+      pass: usuario.pass,
+    });
+    console.log('Estado de usuario actualizado:', usuario); // Para depuración
+    console.log('USUARIO actualizado después de submit:', USUARIO); // Para depuración
   };
 
   return (
     <div className="bg-white dark:bg-slate-900 h-[100.2vh] mt-[-2px] mb-[-2px]">
-      <Nav/>
+      <Nav />
       <div className="max-w-md mx-auto relative overflow-hidden z-10 bg-gray-200 dark:bg-slate-950 p-8 rounded-lg shadow-md mt-[60px]">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-200 mb-6 text-center">
-          Configuracion
+          Configuración
         </h2>
 
-        <form method="post" action={enviarEditar}>
+        <form method="post" onSubmit={handleSubmit}>
           <Input
             label="Usuario"
             type="text"
-            name="usser"
-            value={usser}
+            name="user"
+            value={usuario.user}
             placeholder=""
+            onChange={handleChange}
           />
-
-          <input type="hidden" name="anuncioID" value="" />
 
           <Input
             label="Contraseña"
             type="text"
             name="pass"
+            value={usuario.pass}
             placeholder=""
-            value={pass}
-          />
-
-          <Input
-            label="Cookie Name"
-            type="text"
-            name="cookieName"
-            placeholder=""
-            value={cookieName}
-          />
-
-<Input
-            label="Cookie Value"
-            type="text"
-            name="cookieValue"
-            placeholder=""
-            value={cookieValue}
+            onChange={handleChange}
           />
 
           <div className="flex justify-center mt-[20px]">
             <button
               className="bg-gray-900 border text-gray-200 px-4 py-2 font-bold rounded-md hover:bg-gray-300 hover:text-gray-900 hover:border border-gray-900 transition duration-[.3s]"
-              onClick={handleCambiarClick}
+              type="submit"
             >
               Cambiar
             </button>
           </div>
         </form>
       </div>
-
-      {showModal && (
-        <ModalConfirmacion
-          mensaje="¿Estás seguro de que deseas realizar estos cambios en la configuracio?"
-          botonColor="bg-purple-700"
-          textoBoton="Confirmar"
-          onConfirm={confirmarCambiar}
-          onCancel={cancelarCambiar}
-        />
-      )}
     </div>
   );
 }

@@ -1,9 +1,9 @@
-import { useState } from "react";
+
 
 export default function Input({ label, type, name, placeholder, value }) {
   return (
     <div className="mb-4">
-      <label className="block text-sm font-medium text-gray-900 dark:text-slate-200" for="name">
+      <label className="block text-sm font-medium text-gray-900 dark:text-slate-200">
         {label}
       </label>
       <input
