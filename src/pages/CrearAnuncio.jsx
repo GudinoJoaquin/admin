@@ -1,32 +1,31 @@
-// import { useState } from "react";
+import { useState } from "react";
 import Input from "../components/Input";
 import { RUTAS } from "../assets/utils/constants";
-// import ModalConfirmacion from "../components/modal";
-// import Anuncios from './Anuncios'
+import ModalConfirmacion from "../components/modal"; 
 import Nav from "../components/navBar";
 
 export default function CrearAnuncio() {
-  // const [currentPath] = useState(window.location.search);
   const { enviar } = RUTAS;
 
-  // const [showModal, setShowModal] = useState(false);
-  // const handleCambiarClick = (event) => {
-  //   event.preventDefault();
-  //   setShowModal(true);
-  // };
-  // const confirmarCambiar = () => {
-  //   // Aquí puedes agregar la lógica para enviar el formulario si es necesario.
-  //   // Por ahora, solo cerramos el modal.
-  //   setShowModal(false);
-  // };
-  // const cancelarCambiar = () => {
-  //   setShowModal(false);
-  // };
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCambiarClick = (event) => {
+    event.preventDefault();
+    setShowModal(true);
+  };
+
+  const confirmarCambiar = () => {
+    setShowModal(false);
+    document.getElementById("crearAnuncioForm").submit();
+  };
+
+  const cancelarCambiar = () => {
+    setShowModal(false);
+  };
 
   return (
     <div className="bg-white dark:bg-slate-900 h-[110vh]">
       <Nav/>
-      {/* {currentPath === "/" && <Anuncios />} */}
       <div className="max-w-md mx-auto relative overflow-hidden z-10 bg-gray-200 dark:bg-slate-950 p-8 rounded-lg shadow-2xl mt-[40px]">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-200 mb-6 text-center">
           Crear anuncio
@@ -65,14 +64,14 @@ export default function CrearAnuncio() {
           <div className="flex justify-center mt-[20px]">
             <button
               className="bg-gray-900 dark:bg-slate-200 dark:text-slate-950 dark:hover:bg-slate-950 dark:hover:text-slate-200 dark:hover:border-2 dark:hover:border-slate-200 border text-gray-200 px-4 py-2 font-bold rounded-md hover:bg-gray-300 hover:text-gray-900 hover:border border-gray-900 transition duration-[.3s]"
-              
+              onClick={handleCambiarClick}
             >
               Enviar
             </button>
           </div>
         </form>
       </div>
-      {/* {showModal && (
+      {showModal && (
         <ModalConfirmacion
           mensaje="¿Estás seguro de que deseas crear este anuncio?"
           botonColor="bg-emerald-900"
@@ -80,7 +79,7 @@ export default function CrearAnuncio() {
           onConfirm={confirmarCambiar}
           onCancel={cancelarCambiar}
         />
-      )} */}
+      )}
     </div>
   );
 }

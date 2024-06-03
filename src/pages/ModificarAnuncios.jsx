@@ -3,6 +3,7 @@ import Input from "../components/Input";
 import Loader from "react-js-loader";
 import { RUTAS } from "../assets/utils/constants";
 import Nav from "../components/navBar";
+import ModalConfirmacion from "../components/modal"; 
 
 export default function ModificarAnuncio() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -12,6 +13,22 @@ export default function ModificarAnuncio() {
   const [anuncio, setAnuncio] = useState(null);
   const [loading, setLoading] = useState(true);
   const { enviarEditar } = RUTAS;
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCambiarClick = (event) => {
+    event.preventDefault();
+    setShowModal(true);
+  };
+
+  const confirmarCambiar = () => {
+    setShowModal(false);
+    document.getElementById("modificarAnuncioForm").submit();
+  };
+
+  const cancelarCambiar = () => {
+    setShowModal(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -111,13 +128,22 @@ export default function ModificarAnuncio() {
           <div className="flex justify-center mt-[20px]">
             <button
               className="bg-gray-900 border text-gray-200 px-4 py-2 font-bold rounded-md hover:bg-gray-300 hover:text-gray-900 hover:border border-gray-900 transition duration-[.3s]"
-              
+              onClick={handleCambiarClick}
             >
               Enviar
             </button>
           </div>
         </form>
       </div>
+      {showModal && (
+        <ModalConfirmacion
+          mensaje="¿Estás seguro de que deseas modificar este anuncio?"
+          botonColor="bg-emerald-900"
+          textoBoton="Modificar"
+          onConfirm={confirmarCambiar}
+          onCancel={cancelarCambiar}
+        />
+      )}
     </div>
   );
 }

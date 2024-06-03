@@ -44,17 +44,15 @@ export default function AdminCard({
         console.log("Datos recibidos del servidor:", data);
         toast.success("Anuncio eliminado correctamente");
         setTimeout(() => {
-          toast.loading("Volviendo al inicio");
-          setTimeout(() => {
-            window.location.href = home;
-          }, 1000);
-        }, 500);
+          window.location.reload(); // Recargar la página después de eliminar el anuncio
+        }, 1500); // Ajusta el tiempo según tus necesidades
       })
       .catch((error) => {
-        console.error("Error al eliminar el anuncio:", error);
-        toast.error("Error al eliminar el anuncio");
-      });
-  };
+        toast.success("Anuncio eliminado correctamente");
+        setTimeout(() => {
+          window.location.reload(); // Recargar la página después de eliminar el anuncio
+        }, 1500);      });
+  };  
 
   const cancelarEliminar = () => {
     setShowModal(false);
