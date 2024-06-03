@@ -51,8 +51,9 @@ export default function AdminCard({
         toast.success("Anuncio eliminado correctamente");
         setTimeout(() => {
           window.location.reload(); // Recargar la página después de eliminar el anuncio
-        }, 1500);      });
-  };  
+        }, 1500);
+      });
+  };
 
   const cancelarEliminar = () => {
     setShowModal(false);
