@@ -3,30 +3,28 @@ import { setCookie } from "../assets/utils/cookie";
 import { COOKIE_INFO } from "../assets/utils/constants";
 
 export default function Verificacion() {
-  // Estado para almacenar el código ingresado por el usuario
   const [userCode, setUserCode] = useState("");
-
-  // Estado para almacenar el código obtenido del servidor
   const [serverCode, setServerCode] = useState("");
-
-  // Estado para rastrear si se ha generado la cookie
   const [cookieGenerated, setCookieGenerated] = useState(false);
-
-  // Estado para rastrear los intentos fallidos de verificación
   const [failedAttempts, setFailedAttempts] = useState(0);
-
-  // Referencia mutable para rastrear si se está realizando una solicitud al servidor
   const isFetching = useRef(false);
 
-  // Efecto para obtener el código del servidor al montar el componente
   useEffect(() => {
     const fetchCode = async () => {
       if (!isFetching.current) {
         isFetching.current = true;
         try {
-          // Realizar una solicitud al servidor para obtener el código de verificación
-          const data = await (await fetch("https://anuncios.vercel.app/resend")).text();
-          // Establecer el código obtenido del servidor en el estado correspondiente
+          const response = await fetch("http://tu_servidor/resend", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "api-key": "nv" // Aquí estableces la clave API correspondiente a usuarios no verificados
+            }
+          });
+          if (!response.ok) {
+            throw new Error("Error al obtener el código del servidor");
+          }
+          const data = await response.text();
           setServerCode(data.trim());
         } catch (error) {
           console.error("Error al obtener el código del servidor:", error);
@@ -36,33 +34,25 @@ export default function Verificacion() {
     fetchCode();
   }, []);
 
-  // Manejar el envío del formulario
   const handleSubmit = (event) => {
     event.preventDefault();
     if (userCode === serverCode) {
-      // Si el código ingresado coincide con el código del servidor, generar una cookie
       setCookie(COOKIE_INFO.name, COOKIE_INFO.value, 3);
-      // Establecer el estado para indicar que se ha generado la cookie
       setCookieGenerated(true);
-      // Recargar la página después de 0.5 segundos
       setTimeout(() => {
         window.location.reload();
       }, 500);
     } else {
-      // Si el código ingresado no coincide con el código del servidor, incrementar los intentos fallidos
       setFailedAttempts((prevAttempts) => prevAttempts + 1);
     }
   };
 
-  // Manejar el cambio en el campo de entrada del usuario
   const handleChange = (event) => {
     setUserCode(event.target.value);
   };
 
-  // Efecto para recargar la página si se exceden los 3 intentos fallidos
   useEffect(() => {
     if (failedAttempts >= 3) {
-      // Recargar la página después de 0.2 segundos si se exceden los 3 intentos fallidos
       setTimeout(() => {
         window.location.reload();
       }, 200);
