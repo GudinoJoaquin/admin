@@ -14,7 +14,7 @@ export default function Verificacion() {
       if (!isFetching.current) {
         isFetching.current = true;
         try {
-          const response = await fetch("http://tu_servidor/resend", {
+          const response = await fetch("https://anuncios.vercel.app/resend", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
