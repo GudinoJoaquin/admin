@@ -10,15 +10,13 @@ export function updateUsuario(newUsuario) {
   console.log('USUARIO actualizado dentro de updateUsuario:', USUARIO); // Para depuración
 }
 
-
-
 export const RUTAS = {
   home: "/",
   crear: "/crear",
-  enviar: "https://anuncios.vercel.app/admin/enviar-anuncio",
-  enviarEditar: "https://anuncios.vercel.app/admin/editar-anuncio",
+  enviar: `https://anuncios.vercel.app/admin/enviar-anuncio?key=${API_KEY}`, // Modifica la URL para incluir la clave API
+  enviarEditar: `https://anuncios.vercel.app/admin/editar-anuncio?key=${API_KEY}`, // Modifica la URL para incluir la clave API
   editar: "/editar",
-  eliminar: "https://anuncios.vercel.app/eliminar-anuncio?id=",
+  eliminar: `https://anuncios.vercel.app/eliminar-anuncio?key=${API_KEY}&id=`, // Modifica la URL para incluir la clave API
   login: "/login",
   configurar: "/configurar",
 };

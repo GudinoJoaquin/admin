@@ -23,33 +23,6 @@ export default function CrearAnuncio() {
     setShowModal(false);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await fetch(enviar, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "api-key": "nv" // Aquí estableces la clave API correspondiente
-        },
-        body: JSON.stringify({
-          titulo: event.target.titulo.value,
-          mensaje: event.target.mensaje.value,
-          imagen: event.target.imagen.value,
-          adjunto: event.target.adjunto.value
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error("Error al crear el anuncio");
-      }
-
-      // Aquí puedes manejar la respuesta si es necesaria
-    } catch (error) {
-      console.error("Error al crear el anuncio:", error);
-    }
-  };
-
   return (
     <div className="bg-white dark:bg-slate-900 h-[110vh]">
       <Nav/>
@@ -58,7 +31,7 @@ export default function CrearAnuncio() {
           Crear anuncio
         </h2>
 
-        <form id="crearAnuncioForm" onSubmit={handleSubmit}>
+        <form id="crearAnuncioForm" method="post" action={enviar}>
           <Input label="Titulo" type="text" name="titulo" />
 
           <div className="mb-4">
