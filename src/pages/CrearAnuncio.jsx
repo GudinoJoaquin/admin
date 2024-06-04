@@ -25,13 +25,12 @@ export default function CrearAnuncio() {
 
   return (
     <div className="bg-white dark:bg-slate-900 h-[110vh]">
-      <Nav/>
+      <Nav />
       <div className="max-w-md mx-auto relative overflow-hidden z-10 bg-gray-200 dark:bg-slate-950 p-8 rounded-lg shadow-2xl mt-[40px]">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-200 mb-6 text-center">
           Crear anuncio
         </h2>
 
-        <form id="crearAnuncioForm" method="post" action={`${enviar}?apiKey=v`}>
         <form id="crearAnuncioForm" method="post" action={enviar}>
           <Input label="Titulo" type="text" name="titulo" />
 
@@ -62,6 +61,8 @@ export default function CrearAnuncio() {
             placeholder="Enlace del contenido adjunto"
           />
 
+          <input type="hidden" name="apiKey" value="v" />
+
           <div className="flex justify-center mt-[20px]">
             <button
               className="bg-gray-900 dark:bg-slate-200 dark:text-slate-950 dark:hover:bg-slate-950 dark:hover:text-slate-200 dark:hover:border-2 dark:hover:border-slate-200 border text-gray-200 px-4 py-2 font-bold rounded-md hover:bg-gray-300 hover:text-gray-900 hover:border border-gray-900 transition duration-[.3s]"
@@ -70,7 +71,6 @@ export default function CrearAnuncio() {
               Enviar
             </button>
           </div>
-        </form>
         </form>
       </div>
       {showModal && (
