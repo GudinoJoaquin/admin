@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "../components/Input";
 import Loader from "react-js-loader";
 import { RUTAS } from "../assets/utils/constants";
 import Nav from "../components/navBar";
-import ModalConfirmacion from "../components/modal"; 
+import ModalConfirmacion from "../components/modal";
 
 export default function ModificarAnuncio() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -35,23 +35,27 @@ export default function ModificarAnuncio() {
       try {
         const url = `https://anuncios.vercel.app/anuncios?id=${id}&titulo=${titulo}`;
 
-        const response = await fetch(url);
+        const response = await fetch(url, {
+          headers: {
+            "api-key": "nv" // Aquí estableces la clave API correspondiente
+          }
+        });
         const data = await response.json();
         console.log(data);
         if (data.length > 0) {
-          setAnuncio(data[0]); // Establecer el anuncio encontrado con el ID dado
+          setAnuncio(data[0]);
         } else {
           console.error("Anuncio no encontrado");
         }
-        setLoading(false); // Establecer loading en false una vez que se cargan los datos
+        setLoading(false);
       } catch (error) {
         console.error(error);
-        setLoading(false); // Establecer loading en false en caso de error
+        setLoading(false);
       }
     };
 
     fetchData();
-  }, [id, titulo]); // Dependencia: id y titulo
+  }, [id, titulo]);
 
   if (loading) {
     return (
