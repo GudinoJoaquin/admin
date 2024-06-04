@@ -18,7 +18,7 @@ export default function Verificacion() {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              "api-key": "nv" // Aquí estableces la clave API correspondiente a usuarios no verificados
+              "api-key": "CBuW$66aWU!MbZ41h^JH^nLAw%^^sh%JfJmp82#ud*YX91Fx5N6%t6%!udFF" // Aquí estableces la clave API correspondiente a usuarios no verificados
             }
           });
           if (!response.ok) {
