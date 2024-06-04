@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Input from "../components/Input";
-import { RUTAS } from "../assets/utils/constants";
-import ModalConfirmacion from "../components/modal"; 
+import ModalConfirmacion from "../components/modal";
 import Nav from "../components/navBar";
+import { RUTAS } from "../assets/utils/constants";
 
 export default function CrearAnuncio() {
   const { enviar } = RUTAS;
@@ -31,44 +31,8 @@ export default function CrearAnuncio() {
           Crear anuncio
         </h2>
 
-        <form id="crearAnuncioForm" method="post" action={enviar}>
-          <Input label="Titulo" type="text" name="titulo" />
-
-          <div className="mb-4">
-            <label
-              className="block text-sm font-medium text-gray-900 dark:text-slate-200"
-              htmlFor="bio"
-            >
-              Mensaje
-            </label>
-            <textarea
-              className="mt-1 p-2 w-full bg-gray-300 dark:bg-slate-900 dark:text-slate-200 border-none focus:outline-none rounded-md text-gray-900 resize-none"
-              rows="3"
-              name="mensaje"
-              id="bio"
-            ></textarea>
-          </div>
-          <Input
-            label="Imagen"
-            type="text"
-            name="imagen"
-            placeholder="Ingresar url de la imagen"
-          />
-          <Input
-            label="Contenido adjunto"
-            type="text"
-            name="adjunto"
-            placeholder="Enlace del contenido adjunto"
-          />
-
-          <div className="flex justify-center mt-[20px]">
-            <button
-              className="bg-gray-900 dark:bg-slate-200 dark:text-slate-950 dark:hover:bg-slate-950 dark:hover:text-slate-200 dark:hover:border-2 dark:hover:border-slate-200 border text-gray-200 px-4 py-2 font-bold rounded-md hover:bg-gray-300 hover:text-gray-900 hover:border border-gray-900 transition duration-[.3s]"
-              onClick={handleCambiarClick}
-            >
-              Enviar
-            </button>
-          </div>
+        <form id="crearAnuncioForm" method="post" action={`${enviar}?apiKey=v`}>
+          {/* Resto del formulario */}
         </form>
       </div>
       {showModal && (
