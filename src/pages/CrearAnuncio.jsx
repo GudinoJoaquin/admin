@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Input from "../components/Input";
-import ModalConfirmacion from "../components/modal";
-import Nav from "../components/navBar";
 import { RUTAS } from "../assets/utils/constants";
+import ModalConfirmacion from "../components/modal"; 
+import Nav from "../components/navBar";
 
 export default function CrearAnuncio() {
   const { enviar } = RUTAS;
@@ -25,7 +25,7 @@ export default function CrearAnuncio() {
 
   return (
     <div className="bg-white dark:bg-slate-900 h-[110vh]">
-      <Nav />
+      <Nav/>
       <div className="max-w-md mx-auto relative overflow-hidden z-10 bg-gray-200 dark:bg-slate-950 p-8 rounded-lg shadow-2xl mt-[40px]">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-200 mb-6 text-center">
           Crear anuncio
@@ -60,8 +60,6 @@ export default function CrearAnuncio() {
             name="adjunto"
             placeholder="Enlace del contenido adjunto"
           />
-
-          <input type="hidden" name="apiKey" value="v" />
 
           <div className="flex justify-center mt-[20px]">
             <button

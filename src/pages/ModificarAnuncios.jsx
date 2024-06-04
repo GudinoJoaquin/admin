@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import Input from "../components/Input";
 import Loader from "react-js-loader";
-import Nav from "../components/navBar";
-import ModalConfirmacion from "../components/modal";
 import { RUTAS } from "../assets/utils/constants";
+import Nav from "../components/navBar";
+import ModalConfirmacion from "../components/modal"; 
 
 export default function ModificarAnuncio() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -33,25 +33,25 @@ export default function ModificarAnuncio() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = `https://anuncios.vercel.app/anuncios?id=${id}&titulo=${titulo}&apiKey=nv`;
+        const url = `https://anuncios.vercel.app/anuncios?id=${id}&titulo=${titulo}`;
 
         const response = await fetch(url);
         const data = await response.json();
         console.log(data);
         if (data.length > 0) {
-          setAnuncio(data[0]);
+          setAnuncio(data[0]); // Establecer el anuncio encontrado con el ID dado
         } else {
           console.error("Anuncio no encontrado");
         }
-        setLoading(false);
+        setLoading(false); // Establecer loading en false una vez que se cargan los datos
       } catch (error) {
         console.error(error);
-        setLoading(false);
+        setLoading(false); // Establecer loading en false en caso de error
       }
     };
 
     fetchData();
-  }, [id, titulo]);
+  }, [id, titulo]); // Dependencia: id y titulo
 
   if (loading) {
     return (
@@ -82,7 +82,6 @@ export default function ModificarAnuncio() {
           Modificar anuncio
         </h2>
 
-        <form id="modificarAnuncioForm" method="post" action={enviarEditar}>
         <form id="modificarAnuncioForm" method="post" action={enviarEditar}>
           <Input
             label="Titulo"
@@ -134,7 +133,6 @@ export default function ModificarAnuncio() {
               Enviar
             </button>
           </div>
-        </form>
         </form>
       </div>
       {showModal && (
