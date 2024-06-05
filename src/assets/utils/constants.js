@@ -32,7 +32,7 @@ async function fetchUser() {
       USUARIO.user = user.name;
       USUARIO.pass = user.pass;
     } catch (err) {
-      console.error(`Error: ${err}`);
+      console.error(`Error`);
     } finally {
       isFetching.current = false;
     }
