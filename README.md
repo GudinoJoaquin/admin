@@ -59,13 +59,3 @@ Esto creara una carpeta llamada `dist` la cual será la que debe subir al host
 # API
 La API la podrá encontrar en https://github.com/GudinoJoaquin/server. Allí encontrará el código y la documentación de la misma.
 
-Hecho por: 
-- Facundo Cientofante 6°4 
-- Gudiño Joaquin 6°4 
-
-En colaboración con:
-- Vicedirector Hector Scaglione
-- Jefe de Área Diego Alvarez
-- Profesora Carolina Schnyder
-
-2024
