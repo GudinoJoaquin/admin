@@ -18,26 +18,27 @@ async function fetchUser() {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "api-key": API_KEY, //Aca se envia la API_KEY
+          "api-key": API_KEY, // Aquí se envía la API_KEY como un encabezado
         },
       });
       if (!response.ok) {
-        throw new Error("Error fetcheando data");
+        throw new Error("Error al obtener datos del usuario");
       }
       const data = await response.json();
-      user = data[0]; // Asumiendo que data es un array y queremos el primer elemento
+      user = data[0];
       console.log(data);
 
       // Asignar valores a USUARIO
       USUARIO.user = user.name;
       USUARIO.pass = user.pass;
     } catch (err) {
-      console.error(`Error`);
+      console.error(`Error: ${err.message}`);
     } finally {
       isFetching.current = false;
     }
   }
 }
+
 
 fetchUser();
 
