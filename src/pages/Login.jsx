@@ -9,21 +9,17 @@ import Verificacion from "./Verification";
 export default function Login() {
   const { setSignedIn } = useContext(Context);
   const [showVerification, setShowVerification] = useState(false);
-  const [user, setUser] = useState()
   const [attempts, setAttempts] = useState(0);
   const navigate = useNavigate();
-  const isFetching = useRef(false)
   const { home } = RUTAS;
   const { name, value } = COOKIE_INFO;
 
-  
-
   const submit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     const inputUser = document.querySelector("input[name='user']").value;
     const inputPass = document.querySelector("input[name='pass']").value;
 
-    if (inputUser === user,name && inputPass === user.pass) {
+    if (inputUser === USUARIO.user && inputPass === USUARIO.pass) {
       setShowVerification(true);
     } else {
       setSignedIn(false);
