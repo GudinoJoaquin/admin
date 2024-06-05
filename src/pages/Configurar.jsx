@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { USUARIO } from "../assets/utils/constants"; //Importa el nombre y contraseña del usuario
+import { API_KEY } from "../config/serverKey"; // Importa la API key
+import { USUARIO } from "../assets/utils/constants"; // Importa el nombre y contraseña del usuario
 import Input from "../components/Input";
 import Nav from "../components/navBar";
 
 export default function Configurar() {
-
-
   return (
     <div className="bg-white dark:bg-slate-900 h-[100.2vh] mt-[-2px] mb-[-2px]">
       <Nav />
@@ -14,12 +13,26 @@ export default function Configurar() {
           Configuración
         </h2>
 
-        <form method="POST" action="http://anuncios.vercel.app/updateUsuario"
-        
+        <form
+          method="POST"
+          action="http://anuncios.vercel.app/updateUsuario"
         >
-          <Input label="Usuario" type="text" name="user" placeholder={USUARIO.user} />
+          <Input
+            label="Usuario"
+            type="text"
+            name="user"
+            placeholder={USUARIO.user}
+          />
 
-          <Input label="Contraseña" type="text" name="pass" placeholder={USUARIO.pass} />
+          <Input
+            label="Contraseña"
+            type="text"
+            name="pass"
+            placeholder={USUARIO.pass}
+          />
+
+          {/* Campo oculto para enviar la API key */}
+          <input type="hidden" name="api-key" value={API_KEY} />
 
           <div className="flex justify-center mt-[20px]">
             <button
