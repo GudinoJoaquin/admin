@@ -14,7 +14,7 @@ async function fetchUser() {
   if (!isFetching.current) {
     isFetching.current = true;
     try {
-      const response = await fetch("http://localhost:1234/verificarUsuario", {
+      const response = await fetch("https://anuncios.vercel.app/verificarUsuario", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

@@ -62,7 +62,7 @@ export default function Verificacion() {
   return (
     <div className="flex justify-center items-center h-screen bg-slate-900">
       <div className="max-w-md w-full bg-gray-200 dark:bg-slate-950 p-8 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-gray-200 dark:text-slate-900 mb-6 text-center">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-200 mb-6 text-center">
           Verificación de Código
         </h2>
         <form onSubmit={handleSubmit}>
@@ -75,7 +75,7 @@ export default function Verificacion() {
               value={userCode}
               onChange={handleChange}
               maxLength="6"
-              className="w-full px-4 py-2 text-xl border border-gray-300 rounded-md bg-slate-300 dark:bg-slate-700 text-white dark:text-slate-200"
+              className="w-full px-4 py-2 text-xl border border-gray-300 rounded-md bg-slate-300 dark:bg-slate-700 text-slate-900 dark:text-slate-200"
             />
           </div>
           <div className="flex justify-center mt-4">

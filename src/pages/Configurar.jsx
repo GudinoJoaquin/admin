@@ -14,7 +14,7 @@ export default function Configurar() {
           Configuración
         </h2>
 
-        <form method="POST" action="http://localhost:1234/updateUsuario">
+        <form method="POST" action="http://anuncios.vercel.app/updateUsuario">
           <Input label="Usuario" type="text" name="user" placeholder={USUARIO.user} />
 
           <Input label="Contraseña" type="text" name="pass" placeholder={USUARIO.pass} />
