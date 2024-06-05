@@ -67,3 +67,5 @@ En colaboración con:
 - Vicedirector Hector Scaglione
 - Jefe de Área Diego Alvarez
 - Profesora Carolina Schnyder
+
+2024
