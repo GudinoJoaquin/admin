@@ -15,7 +15,7 @@ export default function useAnuncios(path) {
         setAnuncios(data);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching data: ", error);
+        // console.error("Error fetching data: ", error);
         setLoading(false);
       }
     };
