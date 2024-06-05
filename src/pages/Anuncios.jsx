@@ -5,7 +5,7 @@ import Nav from "../components/navBar";
 
 export default function AdminAnuncios() {
   const { anuncios, loading, currentPage, setCurrentPage, anunciosPerPage } =
-    useAnuncios("https://anuncios.vercel.app/anuncios/");
+    useAnuncios("http://localhost:1234/anuncios/");
 
   // Calcular el índice del último anuncio de la página actual
   const indexOfLastAd = currentPage * anunciosPerPage;
