@@ -1,34 +1,10 @@
-import { useState } from 'react';
-import { USUARIO, updateUsuario } from '../assets/utils/constants';
-import Input from '../components/Input';
-import Nav from '../components/navBar';
+import { useState, useEffect } from "react";
+import { USUARIO } from "../assets/utils/constants"; //Importa el nombre y contraseña del usuario
+import Input from "../components/Input";
+import Nav from "../components/navBar";
 
 export default function Configurar() {
-  const [usuario, setUsuario] = useState({
-    user: USUARIO.user,
-    pass: USUARIO.pass,
-  });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUsuario((prevUsuario) => ({
-      ...prevUsuario,
-      [name]: value,
-    }));
-    console.log(`Campo ${name} cambiado a: ${value}`); // Para depuración
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Formulario enviado'); // Para depuración
-    // Actualizar el objeto USUARIO
-    updateUsuario({
-      user: usuario.user,
-      pass: usuario.pass,
-    });
-    console.log('Estado de usuario actualizado:', usuario); // Para depuración
-    console.log('USUARIO actualizado después de submit:', USUARIO); // Para depuración
-  };
 
   return (
     <div className="bg-white dark:bg-slate-900 h-[100.2vh] mt-[-2px] mb-[-2px]">
@@ -38,24 +14,10 @@ export default function Configurar() {
           Configuración
         </h2>
 
-        <form method="post" onSubmit={handleSubmit}>
-          <Input
-            label="Usuario"
-            type="text"
-            name="user"
-            value={usuario.user}
-            placeholder=""
-            onChange={handleChange}
-          />
+        <form method="POST" action="http://localhost:1234/updateUsuario">
+          <Input label="Usuario" type="text" name="user" placeholder={USUARIO.user} />
 
-          <Input
-            label="Contraseña"
-            type="text"
-            name="pass"
-            value={usuario.pass}
-            placeholder=""
-            onChange={handleChange}
-          />
+          <Input label="Contraseña" type="text" name="pass" placeholder={USUARIO.pass} />
 
           <div className="flex justify-center mt-[20px]">
             <button

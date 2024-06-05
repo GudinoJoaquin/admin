@@ -24,6 +24,7 @@ export default function App() {
 
   return (
     <Context.Provider value={{ signedIn, setSignedIn }}>
+      {/* Aca se definen las rutas de cada pagina */}
       <Router>
         <Routes>
           <Route path={home} element={signedIn ? <Anuncios /> : <Login />} />

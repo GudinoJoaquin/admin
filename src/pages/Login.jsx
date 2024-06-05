@@ -1,27 +1,29 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { Context } from "../App";
-import { USUARIO } from "../assets/utils/constants";
 import { setCookie } from "../assets/utils/cookie";
-import { RUTAS, COOKIE_INFO } from "../assets/utils/constants";
+import { RUTAS, COOKIE_INFO, USUARIO } from "../assets/utils/constants";
 import Verificacion from "./Verification";
 
 export default function Login() {
   const { setSignedIn } = useContext(Context);
   const [showVerification, setShowVerification] = useState(false);
+  const [user, setUser] = useState()
   const [attempts, setAttempts] = useState(0);
   const navigate = useNavigate();
+  const isFetching = useRef(false)
   const { home } = RUTAS;
   const { name, value } = COOKIE_INFO;
 
+  
+
   const submit = (e) => {
-    e.preventDefault();
-    const { user, pass } = USUARIO;
+    e.preventDefault(); 
     const inputUser = document.querySelector("input[name='user']").value;
     const inputPass = document.querySelector("input[name='pass']").value;
 
-    if (inputUser === user && inputPass === pass) {
+    if (inputUser === user,name && inputPass === user.pass) {
       setShowVerification(true);
     } else {
       setSignedIn(false);

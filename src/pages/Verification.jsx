@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { setCookie } from "../assets/utils/cookie";
-import { COOKIE_INFO } from "../assets/utils/constants";
+import { COOKIE_INFO, API_KEY } from "../assets/utils/constants";
 
 export default function Verificacion() {
   const [userCode, setUserCode] = useState("");
@@ -18,7 +18,7 @@ export default function Verificacion() {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              "api-key": "CBuW$66aWU!MbZ41h^JH^nLAw%^^sh%JfJmp82#ud*YX91Fx5N6%t6%!udFF" // Aquí estableces la clave API correspondiente a usuarios no verificados
+              "api-key": API_KEY // Aquí estableces la clave API correspondiente a usuarios no verificados
             }
           });
           if (!response.ok) {
