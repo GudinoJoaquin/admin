@@ -4,6 +4,12 @@
 #### Inicio de sesión
 Para iniciar sesión deberá ingresar correctamente el usuario y la contraseña. Una vez que ambos sean correctos, verá un nuevo formulario que le solicitará un código de verificación. Cada código de verificación es un número de 6 dígitos generado de forma aleatoria que llegará al correo correo@gmail.com cada vez que el usuario y la contraseña ingresados sean los correctos. Este código tiene la intención de agregar un proceso que requiera la intervención de una persona al iniciar sesión para evitar ataques de fuerza bruta, y a su vez servirá como advertencia si alguien logra obtener la información de inicio de sesión.
 
+![image](https://github.com/GudinoJoaquin/admin/assets/130807340/136984a4-666a-4925-81e6-5dcc97201908)
+
+![image](https://github.com/GudinoJoaquin/admin/assets/130807340/8a2ef59b-61be-4476-a7e6-3121410ffe40)
+
+
+
 #### Página principal
 En la página principal se podrán ver los mismos anuncios que ven los usuarios en https://eest5mdp.edu.ar/#/anuncios, con la diferencia de que se agregan los botones de `Crear anuncio`, `Configurar`, `Modificar` y `Eliminar`.
 
@@ -28,6 +34,9 @@ En caso de querer hacer una modificación, deberá descargar los archivos del re
 git clone https://github.com/GudinoJoaquin/admin.git 
 ```
 O puede descargarlo como zip desplegando el boton verde con el texto `Code<>` en la parte superior del repositorio
+
+![image](https://github.com/GudinoJoaquin/admin/assets/130807340/be2047df-4645-438d-b965-966c23a055f6)
+
 
 #### Instalación paquetes
 ```bash
