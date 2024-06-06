@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Input from "../components/Input";
-import { RUTAS } from "../assets/utils/constants";
+import { RUTAS } from "../config/routes";
 import ModalConfirmacion from "../components/modal"; 
 import Nav from "../components/navBar";
 

@@ -1,10 +1,13 @@
-import { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { Context } from "../App";
-import { setCookie } from "../assets/utils/cookie";
-import { RUTAS, COOKIE_INFO, USUARIO } from "../assets/utils/constants";
+import { setCookie } from "../assets/utils/cookieFunctios";
+import { USUARIO } from "../assets/utils/usserObj";
+import { COOKIE_INFO } from "../config/cookieInfo";
+import { RUTAS } from "../config/routes";
 import Verificacion from "./Verification";
+import { initUser } from "../assets/utils/usserObj"; // Importa initUser en lugar de fetchUser
 
 export default function Login() {
   const { setSignedIn } = useContext(Context);
@@ -13,6 +16,13 @@ export default function Login() {
   const navigate = useNavigate();
   const { home } = RUTAS;
   const { name, value } = COOKIE_INFO;
+
+  useEffect(() => {
+    // Llama a initUser() para obtener el usuario cuando el componente se monte
+    initUser().catch(err => {
+      console.error(`Error al inicializar usuario: ${err.message}`);
+    });
+  }, []); // Ejecutar solo una vez al montar el componente
 
   const submit = (e) => {
     e.preventDefault();

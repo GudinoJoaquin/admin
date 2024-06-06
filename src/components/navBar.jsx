@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { RUTAS } from "../assets/utils/constants";
+import { RUTAS } from "../config/routes";
 import ThemeSwitch from "../components/ThemeSwitch";
 
 export default function Nav() {

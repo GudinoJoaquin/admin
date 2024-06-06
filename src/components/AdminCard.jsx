@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Toaster, toast } from "sonner";
-import { RUTAS } from "../assets/utils/constants";
+import { RUTAS } from "../config/routes";
 import ModalConfirmacion from "../components/modal";
 
 export default function AdminCard({

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { API_KEY } from "../config/serverKey"; // Importa la API key
-import { USUARIO } from "../assets/utils/constants"; // Importa el nombre y contraseña del usuario
+import { SERVER_KEY } from "../config/serverKey"; // Importa la API key
+import { USUARIO } from "../assets/utils/usserObj"; // Importa el nombre y contraseña del usuario
 import Input from "../components/Input";
 import Nav from "../components/navBar";
 
@@ -13,10 +13,7 @@ export default function Configurar() {
           Configuración
         </h2>
 
-        <form
-          method="POST"
-          action="http://anuncios.vercel.app/updateUsuario"
-        >
+        <form method="POST" action="http://anuncios.vercel.app/updateUsuario">
           <Input
             label="Usuario"
             type="text"
@@ -32,7 +29,7 @@ export default function Configurar() {
           />
 
           {/* Campo oculto para enviar la API key */}
-          <input type="hidden" name="api-key" value={API_KEY} />
+          <input type="hidden" name="api-key" value={SERVER_KEY} />
 
           <div className="flex justify-center mt-[20px]">
             <button
