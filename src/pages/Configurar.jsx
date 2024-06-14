@@ -1,10 +1,24 @@
 import { useState, useEffect } from "react";
 import { SERVER_KEY } from "../config/serverKey"; // Importa la API key
 import { USUARIO } from "../assets/utils/usserObj"; // Importa el nombre y contraseña del usuario
+import { COOKIE_INFO } from "../config/cookieInfo";
 import Input from "../components/Input";
 import Nav from "../components/navBar";
 
 export default function Configurar() {
+  const [newCookie, setNewCookie] = useState(COOKIE_INFO.value);
+
+  const generarCookie = (e) => {
+    e.preventDefault();
+    const ABCDARIO =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let result = "";
+    for (let i = 0; i < 720; i++) {
+      result += ABCDARIO[Math.floor(Math.random() * ABCDARIO.length)];
+    }
+    setNewCookie(result);
+  };
+
   return (
     <div className="bg-white dark:bg-slate-900 h-[100.2vh] mt-[-2px] mb-[-2px]">
       <Nav />
@@ -30,8 +44,14 @@ export default function Configurar() {
             placeholder={USUARIO.pass}
           />
 
-          {/* Campo oculto para enviar la API key */}
-          <input type="hidden" name="api-key" value={SERVER_KEY} />
+          <button
+            onClick={generarCookie}
+            className="dark:text-slate-200 bg-slate-900 p-[20px]"
+          >
+            Regenerar cookie
+          </button>
+
+          <input type="hidden" value={newCookie} defaultValue={COOKIE_INFO.value} name="cookie" />
 
           <div className="flex justify-center mt-[20px]">
             <button

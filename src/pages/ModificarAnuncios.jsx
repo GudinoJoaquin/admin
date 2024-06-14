@@ -3,7 +3,7 @@ import Input from "../components/Input";
 import Loader from "react-js-loader";
 import { RUTAS } from "../config/routes";
 import Nav from "../components/navBar";
-import ModalConfirmacion from "../components/modal";
+import ModalConfirmacion from "../components/modal"; 
 
 export default function ModificarAnuncio() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -33,7 +33,7 @@ export default function ModificarAnuncio() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = `https://anuncios.vercel.app/anuncios?id=${id}&titulo=${titulo}`;
+        const url =`https://anuncios.vercel.app/anuncios?id=${id}&titulo=${titulo}`;
 
         const response = await fetch(url);
         const data = await response.json();
@@ -83,8 +83,6 @@ export default function ModificarAnuncio() {
         </h2>
 
         <form id="modificarAnuncioForm" method="post" action={enviarEditar}>
-          <Input type="hidden" value={SERVER_KEY} name="api" />
-
           <Input
             label="Titulo"
             type="text"
@@ -146,6 +144,6 @@ export default function ModificarAnuncio() {
           onCancel={cancelarCambiar}
         />
       )}
-    </div>
-  );
+    </div>
+  );
 }
