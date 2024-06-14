@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Input from "../components/Input";
 import { RUTAS } from "../config/routes";
-import ModalConfirmacion from "../components/modal"; 
+import ModalConfirmacion from "../components/modal";
+import { SERVER_KEY } from "../config/serverKey.js";
 import Nav from "../components/navBar";
 
 export default function CrearAnuncio() {
@@ -25,13 +26,14 @@ export default function CrearAnuncio() {
 
   return (
     <div className="bg-white dark:bg-slate-900 h-[110vh]">
-      <Nav/>
+      <Nav />
       <div className="max-w-md mx-auto relative overflow-hidden z-10 bg-gray-200 dark:bg-slate-950 p-8 rounded-lg shadow-2xl mt-[40px]">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-200 mb-6 text-center">
           Crear anuncio
         </h2>
 
         <form id="crearAnuncioForm" method="post" action={enviar}>
+          <Input type="hidden" value={SERVER_KEY} name="api" />
           <Input label="Titulo" type="text" name="titulo" />
 
           <div className="mb-4">

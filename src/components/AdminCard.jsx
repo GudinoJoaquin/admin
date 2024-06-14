@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 import { RUTAS } from "../config/routes";
 import ModalConfirmacion from "../components/modal";
+import { SERVER_KEY } from "../config/serverKey";
 
 export default function AdminCard({
   id,
@@ -36,6 +37,12 @@ export default function AdminCard({
     console.log(`Eliminando anuncio con id: ${id}`);
     fetch(`${eliminar}${id}`, {
       method: "DELETE",
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        api: SERVER_KEY
+      })
     })
       .then((response) => {
         console.log("Respuesta del servidor:", response);

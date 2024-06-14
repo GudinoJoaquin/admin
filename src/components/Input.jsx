@@ -12,6 +12,7 @@ export default function Input({ label, type, name, placeholder, value }) {
         name={name}
         placeholder={placeholder}
         defaultValue={value}
+        
       />
     </div>
   );

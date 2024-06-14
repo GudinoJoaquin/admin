@@ -14,6 +14,8 @@ export default function Configurar() {
         </h2>
 
         <form method="POST" action="http://anuncios.vercel.app/updateUsuario">
+          <Input type="hidden" value={SERVER_KEY} name="api" />
+
           <Input
             label="Usuario"
             type="text"
