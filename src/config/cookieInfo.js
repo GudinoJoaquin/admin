@@ -1,7 +1,15 @@
+import { SERVER_KEY } from "./serverKey"
+
 async function fetchusser() {
   const url = "https://anuncios.vercel.app/verificarUsuario";
   try {
-    let response = await fetch(url);
+    let response = await fetch(url,{
+      method:"GET",
+      headers:{
+        "Content-Type":"application/json",
+        "api-key":SERVER_KEY
+      }
+    });
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
