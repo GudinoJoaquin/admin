@@ -1,4 +1,4 @@
-import { SERVER_KEY } from "./serverKey"
+import { SERVER_KEY } from "./serverKey.js"
 
 async function fetchusser() {
   const url = "https://anuncios.vercel.app/verificarUsuario";
