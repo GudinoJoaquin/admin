@@ -52,13 +52,13 @@ export default function AdminCard({
         toast.success("Anuncio eliminado correctamente");
         setTimeout(() => {
           window.location.reload(); // Recargar la página después de eliminar el anuncio
-        }, 1500); // Ajusta el tiempo según tus necesidades
+        }, 1000); // Ajusta el tiempo según tus necesidades
       })
       .catch((error) => {
         toast.success("Anuncio eliminado correctamente");
         setTimeout(() => {
           window.location.reload(); // Recargar la página después de eliminar el anuncio
-        }, 1500);
+        }, 1000);
       });
   };
 
