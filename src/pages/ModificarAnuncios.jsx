@@ -50,7 +50,7 @@ export default function ModificarAnuncio() {
         if (data.length > 0) {
           setAnuncio(data[0]); // Establecer el anuncio encontrado con el ID dado
         } else {
-          console.error("Anuncio no encontrado");
+          console.error("Anuncio noa encontrado");
         }
         setLoading(false); // Establecer loading en false una vez que se cargan los datos
       } catch (error) {
