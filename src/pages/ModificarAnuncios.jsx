@@ -36,14 +36,7 @@ export default function ModificarAnuncio() {
       try {
         const url =`https://anuncios.vercel.app/anuncios?id=${id}&titulo=${titulo}`;
 
-        const response = await fetch(url,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "api-key": SERVER_KEY, // Aquí estableces la clave API correspondiente a usuarios no verificados
-            },
-          }
+        const response = await fetch(url
         );
         const data = await response.json();
         console.log(data);
@@ -134,6 +127,12 @@ export default function ModificarAnuncio() {
             name="adjunto"
             placeholder="Insertar enlace contenido adjunto"
             value={anuncio.contenido_adjunto || ""}
+          />
+
+          <Input
+            type="hidden"
+            name="api"
+            value={SERVER_KEY}
           />
 
           <div className="flex justify-center mt-[20px]">
