@@ -4,6 +4,7 @@ import Loader from "react-js-loader";
 import { RUTAS } from "../config/routes";
 import Nav from "../components/navBar";
 import ModalConfirmacion from "../components/modal"; 
+import { SERVER_KEY } from "../config/serverKey";
 
 export default function ModificarAnuncio() {
   const urlParams = new URLSearchParams(window.location.search);
