@@ -36,7 +36,14 @@ export default function ModificarAnuncio() {
       try {
         const url =`https://anuncios.vercel.app/anuncios?id=${id}&titulo=${titulo}`;
 
-        const response = await fetch(url
+        const response = await fetch(url,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "api-key": SERVER_KEY, // Aquí estableces la clave API correspondiente a usuarios no verificados
+            },
+          }
         );
         const data = await response.json();
         console.log(data);
