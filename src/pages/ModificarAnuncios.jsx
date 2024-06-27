@@ -36,21 +36,14 @@ export default function ModificarAnuncio() {
       try {
         const url =`https://anuncios.vercel.app/anuncios?id=${id}&titulo=${titulo}`;
 
-        const response = await fetch(url,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "api-key": SERVER_KEY, // Aquí estableces la clave API correspondiente a usuarios no verificados
-            },
-          }
+        const response = await fetch(url
         );
         const data = await response.json();
         console.log(data);
         if (data.length > 0) {
           setAnuncio(data[0]); // Establecer el anuncio encontrado con el ID dado
         } else {
-          console.error("Anuncio noa encontrado");
+          console.error("Anuncio no encontrado");
         }
         setLoading(false); // Establecer loading en false una vez que se cargan los datos
       } catch (error) {
@@ -80,7 +73,7 @@ export default function ModificarAnuncio() {
   if (!anuncio) {
     return (
       <div className="flex justify-center items-center h-screen bg-slate-900">
-        <p className="text-white">Error: Anuncio noa encontrado</p>
+        <p className="text-white">Error: Anuncio no encontrado</p>
       </div>
     );
   }
