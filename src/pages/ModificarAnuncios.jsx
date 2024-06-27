@@ -80,7 +80,7 @@ export default function ModificarAnuncio() {
   if (!anuncio) {
     return (
       <div className="flex justify-center items-center h-screen bg-slate-900">
-        <p className="text-white">Error: Anuncio no encontrado</p>
+        <p className="text-white">Error: Anuncio noa encontrado</p>
       </div>
     );
   }
