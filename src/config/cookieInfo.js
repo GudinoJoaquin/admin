@@ -13,8 +13,10 @@ let COOKIE_INFO = {
 async function fetchCookieValue() {
   try {
     const response = await fetch(url, {
+      method: 'GET',
       headers: {
-        "Authorization": `Bearer ${API_KEY}`
+        'Authorization': `Bearer ${API_KEY}`,
+        'Content-Type': 'application/json'
       }
     });
 
@@ -40,5 +42,7 @@ fetchCookieValue().then(() => {
   // Aquí puedes hacer cualquier cosa que necesites con COOKIE_INFO
   console.log("COOKIE_INFO ready to be used:", COOKIE_INFO);
 });
+
+export { COOKIE_INFO };
 
 export { COOKIE_INFO };
