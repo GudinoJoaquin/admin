@@ -11,17 +11,30 @@ export let COOKIE_INFO = {
 const API_KEY = "CBuW$66aWU!MbZ41h^JH^nLAw%^^sh%JfJmp82#ud*YX91Fx5N6%t6%!udFF";
 const url = "https://anuncios.vercel.app/verificarUsuario";
 
-fetch(url, {
-  headers: {
-    "Authorization": `Bearer ${API_KEY}`
-  }
-})
-  .then(response => response.json())
+function fetchCookieValue() {
+  fetch(url, {
+    headers: {
+      "Authorization": `Bearer ${API_KEY}`
+    }
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
   .then(data => {
-    COOKIE_INFO.value = data[0].cookie_value;
-    console.log("Updated COOKIE_INFO:", COOKIE_INFO);
+    if (data && data.length > 0 && data[0].cookie_value) {
+      COOKIE_INFO.value = data[0].cookie_value;
+      console.log("Updated COOKIE_INFO:", COOKIE_INFO);
+    } else {
+      console.error("Unexpected response structure:", data);
+    }
   })
   .catch(error => {
     console.error("Error fetching cookie value:", error);
   });
+}
 
+// Llama a la función para hacer el fetch
+fetchCookieValue();
