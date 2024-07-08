@@ -6,7 +6,6 @@ import ModificarAnuncios from "./pages/ModificarAnuncios.jsx";
 import Login from "./pages/Login.jsx";
 import Configurar from "./pages/Configurar.jsx";
 import { getCookie } from "./assets/utils/cookieFunctios.js";
-import { COOKIE_INFO } from "./config/cookieInfo.js";
 import { RUTAS } from "./config/routes.js";
 
 export const Context = React.createContext();
