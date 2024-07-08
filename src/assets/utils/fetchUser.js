@@ -18,7 +18,7 @@ export async function fetchUser() {
             );
 
             if (!response.ok) {
-                throw new Error(Error al obtener datos del usuario: ${response.statusText});
+                throw new Error(`Error al obtener datos del usuario: ${response.statusText}`);
             }
 
             const data = await response.json();
@@ -27,12 +27,14 @@ export async function fetchUser() {
             return {
                 user: user.name,
                 pass: user.pass,
-                cookieValue: user.cookie_value // Extrae el valor de la cookie
+                cookieValue: user.cookie_value, // Extrae el valor de la cookie_value
+                cookieName: user.cookie_name // Extrae el valor de cookie_name
             };
         } catch (err) {
-            console.error(Error al obtener usuario: ${err.message});
+            console.error(`Error al obtener usuario: ${err.message}`);
             throw err; // Re-lanzar el error para que se maneje externamente si es necesario
         } finally {
             isFetching = false;
         }
     }
+}
