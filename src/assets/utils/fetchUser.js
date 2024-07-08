@@ -26,7 +26,8 @@ export async function fetchUser() {
 
             return {
                 user: user.name,
-                pass: user.pass
+                pass: user.pass,
+                cookieValue: user.cookie_value // Extrae el valor de la cookie
             };
         } catch (err) {
             console.error(`Error al obtener usuario: ${err.message}`);
