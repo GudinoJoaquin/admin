@@ -45,4 +45,3 @@ fetchCookieValue().then(() => {
 
 export { COOKIE_INFO };
 
-export { COOKIE_INFO };
